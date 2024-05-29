@@ -1,6 +1,6 @@
 # x-tree-selection
 
-## vue3 tree selection 不依赖任何第三方 UI 库
+### vue3 tree selection 不依赖任何第三方 UI 库
 
 ### 功能
 
