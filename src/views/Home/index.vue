@@ -8,7 +8,7 @@
             <div class="titleTile" id="id-outBoxDrag">
                 <div class="titleName">x-tree-selection</div>
                 <div class="closeBtn" @click="toggleBox">
-                    <div class="closeBtnIcon"></div>
+                    <div class="closeBtnIcon closeIcon"></div>
                 </div>
             </div>
             <div class="midBody">
@@ -17,14 +17,15 @@
                         <div class="topTreeSearch">
                             <div class="searchIcon" v-if="treeSearchText.length === 0"></div>
                             <input placeholder="搜搜看吧" v-model="treeSearchText" type="text">
+                            <div class="clearSearch closeIcon" v-if="treeSearchText.length !== 0" @click="clearSearch"></div>
                         </div>
                         <div class="bodyArr">
                             <div class="handTreeBox">
-                                <tree-selection 
-                                    ref="xTree" 
-                                    class="treeOutBox" 
-                                    :hlWord="toLower(treeSearchText)" 
-                                    :treeBoxData="menuOptions2" 
+                                <tree-selection
+                                    ref="xTree"
+                                    class="treeOutBox"
+                                    :hlWord="toLower(treeSearchText)"
+                                    :treeBoxData="menuOptions2"
                                     :outData="menuOptions2"
                                     @selfSeled="seledParent"
                                     @noSeled="noSelParent"
@@ -94,12 +95,17 @@ watch(treeSearchText, (val) => {
     filterTreeData(a)
 })
 
-const toggleBox = function () {
+const toggleBox = function() {
     close.value = !close.value
+}
+
+const clearSearch = function() {
+    treeSearchText.value = ''
 }
 
 const clickCancelBtn = function() {
     result.value = ''
+    clearSearch()
     initTreeData(mockData)
 }
 
